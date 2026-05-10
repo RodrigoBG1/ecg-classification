@@ -7,9 +7,9 @@ comparing three deep learning architectures for 12-lead ECG signal classificatio
 
 | Model | Status |
 |-------|--------|
-| ResNet-1D | ✅ Implemented |
-| PatchTST | 🔜 Phase 2 |
-| CNN-Transformer hybrid | 🔜 Phase 2 |
+| ResNet-1D | Implemented |
+| PatchTST | Phase 2 |
+| CNN-Transformer hybrid | Phase 2 |
 
 ## Setup
 
@@ -41,7 +41,7 @@ python scripts/download_data.py \
   --data_path ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3/
 ```
 
-Expected output: `ptbxl_database.csv` ✅ · `scp_statements.csv` ✅ · `records100/` ✅
+Expected output: `ptbxl_database.csv` · `scp_statements.csv` · `records100/` 
 
 ### 3. Preprocess
 

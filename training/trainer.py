@@ -59,7 +59,7 @@ class Trainer:
             model.parameters(), lr=learning_rate, weight_decay=weight_decay
         )
         self.scheduler = ReduceLROnPlateau(
-            self.optimizer, mode="max", patience=5, factor=0.5, verbose=True
+            self.optimizer, mode="max", patience=5, factor=0.5
         )
 
         self.best_val_f1: float = -1.0
