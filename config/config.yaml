@@ -1,0 +1,16 @@
+data:
+  path: "ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3/"
+  sampling_rate: 100
+  n_leads: 12
+  signal_length: 1000
+  classes: [NORM, MI, STTC, CD, HYP]
+
+training:
+  batch_size: 64
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  num_workers: 4
+
+model:
+  n_classes: 5
