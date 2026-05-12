@@ -5,7 +5,8 @@ Usage:
     python scripts/train_resnet.py \\
         --data_path data/raw/ \\
         --norm_stats config/norm_stats.npy \\
-        --pos_weight data/processed/pos_weight.npy
+        --pos_weight data/processed/pos_weight.npy \\
+        --sampling_rate 500
 
 Run scripts/preprocess.py first to generate norm_stats.npy and pos_weight.npy.
 """
@@ -40,17 +41,20 @@ def load_config(config_path: Path) -> dict:
 def main(args: argparse.Namespace) -> None:
     Path("logs").mkdir(exist_ok=True)
 
-    config = load_config(Path(args.config))
-    data_cfg = config["data"]
+    config    = load_config(Path(args.config))
+    data_cfg  = config["data"]
     train_cfg = config["training"]
     model_cfg = config["model"]
+
+    sr         = args.sampling_rate or data_cfg["sampling_rate"]
+    sig_length = 5000 if sr == 500 else 1000
 
     # ── Normalizer stats ───────────────────────────────────────────────────
     norm_stats_path = Path(args.norm_stats)
     if not norm_stats_path.exists():
         log.error(
             f"Normalizer stats not found at {norm_stats_path}. "
-            "Run: python scripts/preprocess.py --data_path <data_path>"
+            f"Run: python scripts/preprocess.py --data_path <data_path> --sampling_rate {sr}"
         )
         sys.exit(1)
     norm_stats = load_norm_stats(norm_stats_path)
@@ -64,39 +68,49 @@ def main(args: argparse.Namespace) -> None:
         log.info(f"Loaded pos_weight: {pos_weight.tolist()}")
 
     # ── Datasets & loaders ────────────────────────────────────────────────
-    data_path = Path(args.data_path)
-    train_transforms = default_train_transforms()
+    data_path       = Path(args.data_path)
+    train_transforms = default_train_transforms(signal_length=sig_length)
 
     train_ds = PTBXLDataset(
         data_path, split="train",
+        sampling_rate=sr,
         transform=train_transforms,
         norm_stats=norm_stats,
     )
     val_ds = PTBXLDataset(
         data_path, split="val",
+        sampling_rate=sr,
         transform=None,
         norm_stats=norm_stats,
     )
-    log.info(f"Train: {len(train_ds)} samples  Val: {len(val_ds)} samples")
+    log.info(f"Train: {len(train_ds)} samples  Val: {len(val_ds)} samples  "
+             f"sampling_rate={sr} Hz  signal_length={sig_length}")
 
+    num_workers = train_cfg["num_workers"]
     train_loader = DataLoader(
         train_ds,
         batch_size=train_cfg["batch_size"],
         shuffle=True,
-        num_workers=train_cfg["num_workers"],
+        num_workers=num_workers,
         pin_memory=torch.cuda.is_available(),
+        persistent_workers=num_workers > 0,
         drop_last=True,
     )
     val_loader = DataLoader(
         val_ds,
         batch_size=train_cfg["batch_size"] * 2,
         shuffle=False,
-        num_workers=train_cfg["num_workers"],
+        num_workers=num_workers,
         pin_memory=torch.cuda.is_available(),
+        persistent_workers=num_workers > 0,
     )
 
     # ── Model ─────────────────────────────────────────────────────────────
-    model = ResNet1D(n_classes=model_cfg["n_classes"])
+    model = ResNet1D(
+        n_classes=model_cfg["n_classes"],
+        drop_path_rate=model_cfg.get("drop_path_rate", 0.2),
+        sampling_rate=sr,
+    )
     log.info(f"ResNet-1D parameters: {model.n_parameters:,}")
 
     # ── Trainer ───────────────────────────────────────────────────────────
@@ -108,16 +122,20 @@ def main(args: argparse.Namespace) -> None:
         checkpoint_dir=Path(args.checkpoint_dir),
         learning_rate=train_cfg["learning_rate"],
         weight_decay=train_cfg["weight_decay"],
+        mixup_alpha=train_cfg.get("mixup_alpha", 0.4),
+        grad_clip_norm=train_cfg.get("grad_clip_norm", 1.0),
+        label_smoothing=train_cfg.get("label_smoothing", 0.1),
+        warmup_epochs=train_cfg.get("warmup_epochs", 5),
     )
 
-    log.info(f"Starting training for {args.epochs or train_cfg['epochs']} epochs …")
-    history = trainer.fit(n_epochs=args.epochs or train_cfg["epochs"])
+    n_epochs = args.epochs or train_cfg["epochs"]
+    log.info(f"Starting training for {n_epochs} epochs …")
+    history = trainer.fit(n_epochs=n_epochs)
 
-    # Summary
-    best = max(history, key=lambda r: r["f1_macro"])
+    best = max(history, key=lambda r: r["auc_roc_macro"])
     log.info(
-        f"\nTraining complete. Best val macro F1: {best['f1_macro']:.4f} "
-        f"at epoch {int(best['epoch'])}"
+        f"\nTraining complete. Best val AUC={best['auc_roc_macro']:.4f}  "
+        f"F1={best['f1_macro']:.4f}  at epoch {int(best['epoch'])}"
     )
 
 
@@ -128,6 +146,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--pos_weight",     type=str, default="data/processed/pos_weight.npy")
     p.add_argument("--config",         type=str, default="config/config.yaml")
     p.add_argument("--checkpoint_dir", type=str, default="checkpoints/resnet1d")
+    p.add_argument("--sampling_rate",  type=int, default=None, choices=[100, 500],
+                   help="Override sampling rate from config (100 or 500 Hz)")
     p.add_argument("--epochs",         type=int, default=None,
                    help="Override epochs from config")
     return p.parse_args()

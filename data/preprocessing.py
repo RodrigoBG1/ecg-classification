@@ -16,18 +16,18 @@ import torch
 
 def fit_normalizer(X_train: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
-    Compute per-lead mean and std from the training set.
+    Compute per-lead mean and std from a pre-loaded signal array.
 
     Args:
-        X_train: array of shape (N, 12, 1000).
+        X_train: array of shape (N, 12, L).
 
     Returns:
         mean: shape (12, 1)
         std:  shape (12, 1)
     """
     mean = X_train.mean(axis=(0, 2), keepdims=False)[:, np.newaxis]  # (12, 1)
-    std = X_train.std(axis=(0, 2), keepdims=False)[:, np.newaxis]    # (12, 1)
-    std = np.where(std == 0, 1.0, std)
+    std  = X_train.std(axis=(0, 2),  keepdims=False)[:, np.newaxis]  # (12, 1)
+    std  = np.where(std == 0, 1.0, std)
     return mean, std
 
 
@@ -64,14 +64,7 @@ class GaussianNoise:
         self.sigma = sigma
 
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Args:
-            x: Tensor of shape (12, 1000).
-        Returns:
-            Noisy tensor of the same shape.
-        """
-        noise = torch.randn_like(x) * self.sigma
-        return x + noise
+        return x + torch.randn_like(x) * self.sigma
 
     def __repr__(self) -> str:
         return f"GaussianNoise(sigma={self.sigma})"
@@ -85,14 +78,7 @@ class RandomAmplitudeScale:
         self.high = high
 
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Args:
-            x: Tensor of shape (12, 1000).
-        Returns:
-            Scaled tensor of the same shape.
-        """
-        scale = random.uniform(self.low, self.high)
-        return x * scale
+        return x * random.uniform(self.low, self.high)
 
     def __repr__(self) -> str:
         return f"RandomAmplitudeScale(low={self.low}, high={self.high})"
@@ -103,35 +89,54 @@ class RandomCrop:
     Randomly crop a contiguous segment of length `crop_size` then
     zero-pad back to `output_size`.
 
-    This simulates shorter recordings without changing the tensor shape
+    Simulates shorter recordings without changing the tensor shape
     expected by downstream convolutions.
     """
 
-    def __init__(self, crop_size: int = 900, output_size: int = 1000) -> None:
+    def __init__(self, crop_size: int, output_size: int) -> None:
         if crop_size > output_size:
             raise ValueError("crop_size must be <= output_size")
         self.crop_size = crop_size
         self.output_size = output_size
 
     def __call__(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Args:
-            x: Tensor of shape (12, L) where L >= crop_size.
-        Returns:
-            Tensor of shape (12, output_size) with the cropped segment
-            left-aligned and zero-padded on the right.
-        """
         L = x.shape[-1]
         max_start = max(0, L - self.crop_size)
         start = random.randint(0, max_start)
         cropped = x[..., start : start + self.crop_size]
-
         out = torch.zeros(*x.shape[:-1], self.output_size, dtype=x.dtype)
         out[..., : self.crop_size] = cropped
         return out
 
     def __repr__(self) -> str:
         return f"RandomCrop(crop_size={self.crop_size}, output_size={self.output_size})"
+
+
+class RandomLeadDropout:
+    """
+    Randomly zero out one or two ECG leads during training.
+
+    Encourages the model to not over-rely on any single lead and improves
+    robustness to missing/noisy leads at inference time (a common real-world
+    scenario in clinical settings).
+    """
+
+    def __init__(self, p: float = 0.2, max_leads: int = 2) -> None:
+        self.p = p
+        self.max_leads = max_leads
+
+    def __call__(self, x: torch.Tensor) -> torch.Tensor:
+        if random.random() > self.p:
+            return x
+        n_drop = random.randint(1, self.max_leads)
+        leads = random.sample(range(x.shape[0]), n_drop)
+        x = x.clone()
+        for lead in leads:
+            x[lead] = 0.0
+        return x
+
+    def __repr__(self) -> str:
+        return f"RandomLeadDropout(p={self.p}, max_leads={self.max_leads})"
 
 
 class Compose:
@@ -153,29 +158,34 @@ class Compose:
         return "\n".join(lines)
 
 
-def default_train_transforms() -> Compose:
-    """Return the standard augmentation pipeline used during training."""
+def default_train_transforms(signal_length: int = 5000) -> Compose:
+    """Return the standard augmentation pipeline for training.
+
+    Args:
+        signal_length: Total signal length in samples (5000 at 500 Hz, 1000 at 100 Hz).
+                       The RandomCrop uses 90% of signal_length.
+    """
+    crop_size = int(signal_length * 0.9)
     return Compose([
         GaussianNoise(sigma=0.02),
         RandomAmplitudeScale(low=0.8, high=1.2),
-        RandomCrop(crop_size=900, output_size=1000),
+        RandomCrop(crop_size=crop_size, output_size=signal_length),
+        RandomLeadDropout(p=0.2, max_leads=2),
     ])
 
 
 if __name__ == "__main__":
-    # Smoke test
     rng = np.random.default_rng(42)
-    X_fake = rng.standard_normal((10, 12, 1000)).astype(np.float32)
 
-    mean, std = fit_normalizer(X_fake)
-    print(f"mean shape: {mean.shape}, std shape: {std.shape}")
+    for sr, L in [(500, 5000), (100, 1000)]:
+        X_fake = rng.standard_normal((10, 12, L)).astype(np.float32)
+        mean, std = fit_normalizer(X_fake)
+        assert mean.shape == (12, 1) and std.shape == (12, 1)
 
-    X_normed = normalize(X_fake, mean, std)
-    print(f"Normalized mean≈0: {np.abs(X_normed.mean(axis=(0,2))).max():.4f}")
+        x = torch.from_numpy(X_fake[0])
+        pipeline = default_train_transforms(signal_length=L)
+        out = pipeline(x)
+        assert out.shape == (12, L), f"[{sr}Hz] Unexpected shape: {out.shape}"
+        print(f"[{sr} Hz] transform output shape: {out.shape}")
 
-    x = torch.from_numpy(X_fake[0])
-    pipeline = default_train_transforms()
-    out = pipeline(x)
-    assert out.shape == (12, 1000), f"Unexpected shape: {out.shape}"
-    print(f"Transform output shape: {out.shape}")
     print("preprocessing.py smoke test passed.")
