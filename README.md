@@ -60,8 +60,7 @@ Outputs:
 ### 4. Train ResNet-1D
 
 ```bash
-python scripts/train_resnet.py \
-  --data_path ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3/
+python scripts/train_resnet.py --data_path "ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3" --norm_stats config/norm_stats.npy --pos_weight data/processed/pos_weight.npy --sampling_rate 500
 ```
 
 Best checkpoint saved to `checkpoints/resnet1d/best_model.pt` (based on val macro F1).
