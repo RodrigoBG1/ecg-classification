@@ -10,7 +10,7 @@ training:
   epochs: 100
   learning_rate: 0.001
   weight_decay: 0.0001
-  num_workers: 4
+  num_workers: 2
   mixup_alpha: 0.4
   grad_clip_norm: 1.0
   label_smoothing: 0.1
@@ -28,3 +28,13 @@ cnn_transformer:
   ffn_dim:         1024
   dropout:         0.1
   drop_path_rate:  0.1
+  drop_path_rate: 0.3
+
+patchtst:
+  n_classes: 5
+  d_model: 256
+  n_heads: 8
+  n_layers: 6
+  ff_dim: 1024
+  attn_dropout: 0.1
+  dropout: 0.1

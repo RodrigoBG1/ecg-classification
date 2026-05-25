@@ -23,3 +23,32 @@ Training complete. Best val macro F1: 0.7342 at epoch 18
 2026-05-11 15:21:17  INFO      __main__  Starting training for 100 epochs …
 2026-05-11 18:03:40  INFO      __main__  
 Training complete. Best val AUC=0.9302  F1=0.7334  at epoch 23
+2026-05-13 14:00:39  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-13 14:00:39  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-13 14:00:39  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-13 14:00:39  INFO      __main__  ResNet-1D parameters: 8,914,053
+2026-05-13 14:00:48  INFO      __main__  Starting training for 100 epochs …
+2026-05-13 22:23:43  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-13 22:23:43  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-13 22:23:44  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-13 22:23:44  INFO      __main__  ResNet-1D parameters: 8,914,053
+2026-05-13 22:23:51  INFO      __main__  Starting training for 100 epochs …
+2026-05-14 01:10:03  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-14 01:10:03  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-14 01:10:04  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-14 01:10:04  INFO      __main__  ResNet-1D parameters: 8,914,053
+2026-05-14 01:10:12  INFO      __main__  Starting training for 100 epochs …
+2026-05-14 04:07:53  INFO      __main__  
+Training complete. Best val AUC=0.9287  F1=0.7018  at epoch 23
+2026-05-15 22:21:54  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-15 22:21:54  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-15 22:21:55  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-15 22:21:56  INFO      __main__  ResNet-1D parameters: 8,914,053
+2026-05-15 22:22:04  INFO      __main__  Starting training for 100 epochs …
+2026-05-15 23:25:42  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-15 23:25:42  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-15 23:25:44  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-15 23:25:44  INFO      __main__  ResNet-1D parameters: 8,914,053
+2026-05-15 23:25:51  INFO      __main__  Starting training for 100 epochs …
+2026-05-16 02:05:15  INFO      __main__  
+Training complete. Best val AUC=0.9329  F1=0.7222  at epoch 19
