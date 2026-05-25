@@ -1,0 +1,4 @@
+2026-05-25 06:16:05  INFO      __main__  Test set: 2198 samples  |  model: cnn_transformer  |  sr=500 Hz
+2026-05-25 06:41:47  INFO      __main__  Test set: 2198 samples  |  model: cnn_transformer  |  sr=500 Hz
+2026-05-25 06:41:48  INFO      __main__  Loaded checkpoint from checkpoints\cnn_transformer\best_model.pt  ->  device=cuda
+2026-05-25 06:42:45  INFO      __main__  Test results — AUC=0.9242  F1=0.7033

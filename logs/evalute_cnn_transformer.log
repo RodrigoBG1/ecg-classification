@@ -1,0 +1,24 @@
+2026-05-25 06:41:47  INFO      __main__  Test set: 2198 samples  |  model: cnn_transformer  |  sr=500 Hz
+C:\Users\caro_\OneDrive\Documents\ecg-classification\scripts\evaluate.py:102: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(checkpoint_path, map_location="cpu")
+2026-05-25 06:41:48  INFO      __main__  Loaded checkpoint from checkpoints\cnn_transformer\best_model.pt  ->  device=cuda
+
+============================================================
+  TEST SET RESULTS  —  CNN_TRANSFORMER
+============================================================
+  Macro AUC-ROC : 0.9242
+  Macro F1      : 0.7033
+  Hamming Acc   : 0.8375
+  Precision     : 0.6106
+  Recall        : 0.8656
+------------------------------------------------------------
+  Per-class AUC:
+    NORM    0.9443
+    MI      0.9335
+    STTC    0.9289
+    CD      0.9185
+    HYP     0.8957
+============================================================
+
+2026-05-25 06:42:45  INFO      __main__  Test results — AUC=0.9242  F1=0.7033
+PS C:\Users\caro_\OneDrive\Documents\ecg-classification>

@@ -1,0 +1,78 @@
+PS C:\Users\caro_\OneDrive\Documents\ecg-classification> python scripts/train_cnn_transformer.py `
+>>     --data_path "ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3" `
+>>     --norm_stats config/norm_stats.npy `
+>>     --pos_weight data/processed/pos_weight.npy `
+>>     --sampling_rate 500
+2026-05-24 19:17:59  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-24 19:17:59  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-24 19:18:00  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-24 19:18:01  INFO      __main__  CNN-Transformer parameters: 3,729,349
+2026-05-24 19:18:05  INFO      __main__  Starting training for 100 epochs …
+2026-05-24 19:18:05  INFO      training.trainer  Training on cuda for up to 100 epochs (patience=15, amp=True, mixup=True, warmup=5 epochs, label_smoothing=0.1)
+2026-05-24 19:26:09  INFO      training.trainer  Epoch   1/100  train_loss=0.9858  val_loss=0.7663  lr=2.08e-04  AUC=0.8559  F1=0.5985  hamming=0.7484  prec=0.4937  rec=0.8083
+2026-05-24 19:26:09  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8559, F1=0.5985) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 19:32:43  INFO      training.trainer  Epoch   2/100  train_loss=0.9165  val_loss=0.6753  lr=4.06e-04  AUC=0.8933  F1=0.6629  hamming=0.8066  prec=0.5763  rec=0.8259
+2026-05-24 19:32:43  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8933, F1=0.6629) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 19:38:53  INFO      training.trainer  Epoch   3/100  train_loss=0.8798  val_loss=0.6962  lr=6.04e-04  AUC=0.9049  F1=0.6343  hamming=0.7428  prec=0.5366  rec=0.8807
+2026-05-24 19:38:53  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9049, F1=0.6343) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 19:43:39  INFO      training.trainer  Epoch   4/100  train_loss=0.8654  val_loss=0.6526  lr=8.02e-04  AUC=0.9054  F1=0.6636  hamming=0.7931  prec=0.5638  rec=0.8660
+2026-05-24 19:43:39  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9054, F1=0.6636) → checkpoints\cnn_transformer\best_model.pt
+C:\Users\caro_\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\lr_scheduler.py:240: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+2026-05-24 19:48:23  INFO      training.trainer  Epoch   5/100  train_loss=0.8616  val_loss=0.6572  lr=1.00e-03  AUC=0.9102  F1=0.6723  hamming=0.7989  prec=0.5965  rec=0.8481
+2026-05-24 19:48:23  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9102, F1=0.6723) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 19:53:07  INFO      training.trainer  Epoch   6/100  train_loss=0.8522  val_loss=0.6389  lr=1.00e-03  AUC=0.9128  F1=0.6752  hamming=0.8097  prec=0.5732  rec=0.8659
+2026-05-24 19:53:07  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9128, F1=0.6752) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 19:57:51  INFO      training.trainer  Epoch   7/100  train_loss=0.8376  val_loss=0.6533  lr=9.99e-04  AUC=0.9136  F1=0.6590  hamming=0.7722  prec=0.5709  rec=0.8754
+2026-05-24 19:57:51  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9136, F1=0.6590) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 20:02:35  INFO      training.trainer  Epoch   8/100  train_loss=0.8316  val_loss=0.6282  lr=9.98e-04  AUC=0.9198  F1=0.6754  hamming=0.7973  prec=0.5954  rec=0.8683
+2026-05-24 20:02:36  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9198, F1=0.6754) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 20:07:21  INFO      training.trainer  Epoch   9/100  train_loss=0.8261  val_loss=0.6030  lr=9.96e-04  AUC=0.9188  F1=0.6896  hamming=0.8199  prec=0.5904  rec=0.8772
+2026-05-24 20:12:04  INFO      training.trainer  Epoch  10/100  train_loss=0.8264  val_loss=0.6282  lr=9.93e-04  AUC=0.9169  F1=0.6747  hamming=0.7842  prec=0.5888  rec=0.8859
+2026-05-24 20:16:47  INFO      training.trainer  Epoch  11/100  train_loss=0.8209  val_loss=0.6301  lr=9.90e-04  AUC=0.9200  F1=0.6722  hamming=0.7863  prec=0.5683  rec=0.9002
+2026-05-24 20:16:47  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9200, F1=0.6722) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 20:21:30  INFO      training.trainer  Epoch  12/100  train_loss=0.8175  val_loss=0.6010  lr=9.87e-04  AUC=0.9248  F1=0.6842  hamming=0.8139  prec=0.5816  rec=0.8828
+2026-05-24 20:21:30  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9248, F1=0.6842) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 20:26:11  INFO      training.trainer  Epoch  13/100  train_loss=0.8128  val_loss=0.5882  lr=9.83e-04  AUC=0.9241  F1=0.7048  hamming=0.8314  prec=0.6174  rec=0.8726
+2026-05-24 20:30:55  INFO      training.trainer  Epoch  14/100  train_loss=0.8071  val_loss=0.5785  lr=9.78e-04  AUC=0.9269  F1=0.7035  hamming=0.8312  prec=0.6105  rec=0.8767
+2026-05-24 20:30:55  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9269, F1=0.7035) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 20:35:36  INFO      training.trainer  Epoch  15/100  train_loss=0.8013  val_loss=0.5833  lr=9.73e-04  AUC=0.9231  F1=0.7077  hamming=0.8377  prec=0.6149  rec=0.8692
+2026-05-24 20:41:05  INFO      training.trainer  Epoch  16/100  train_loss=0.8077  val_loss=0.5830  lr=9.67e-04  AUC=0.9247  F1=0.6989  hamming=0.8306  prec=0.6028  rec=0.8735
+2026-05-24 20:45:54  INFO      training.trainer  Epoch  17/100  train_loss=0.8057  val_loss=0.5887  lr=9.61e-04  AUC=0.9220  F1=0.6990  hamming=0.8307  prec=0.5966  rec=0.8756
+2026-05-24 20:50:36  INFO      training.trainer  Epoch  18/100  train_loss=0.8050  val_loss=0.5922  lr=9.55e-04  AUC=0.9249  F1=0.6979  hamming=0.8224  prec=0.6090  rec=0.8790
+2026-05-24 20:55:17  INFO      training.trainer  Epoch  19/100  train_loss=0.7974  val_loss=0.5712  lr=9.47e-04  AUC=0.9299  F1=0.7180  hamming=0.8471  prec=0.6256  rec=0.8694
+2026-05-24 20:55:18  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9299, F1=0.7180) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 20:59:58  INFO      training.trainer  Epoch  20/100  train_loss=0.7998  val_loss=0.5871  lr=9.40e-04  AUC=0.9298  F1=0.6961  hamming=0.8198  prec=0.6114  rec=0.8780
+2026-05-24 21:04:37  INFO      training.trainer  Epoch  21/100  train_loss=0.8037  val_loss=0.5973  lr=9.32e-04  AUC=0.9241  F1=0.6937  hamming=0.8157  prec=0.6119  rec=0.8722
+2026-05-24 21:09:10  INFO      training.trainer  Epoch  22/100  train_loss=0.7888  val_loss=0.5723  lr=9.23e-04  AUC=0.9278  F1=0.7106  hamming=0.8387  prec=0.6177  rec=0.8775
+2026-05-24 21:13:59  INFO      training.trainer  Epoch  23/100  train_loss=0.7956  val_loss=0.5906  lr=9.14e-04  AUC=0.9265  F1=0.7015  hamming=0.8296  prec=0.6074  rec=0.8772
+2026-05-24 21:18:50  INFO      training.trainer  Epoch  24/100  train_loss=0.7923  val_loss=0.5756  lr=9.05e-04  AUC=0.9289  F1=0.7125  hamming=0.8380  prec=0.6134  rec=0.8908
+2026-05-24 21:23:43  INFO      training.trainer  Epoch  25/100  train_loss=0.7848  val_loss=0.5910  lr=8.95e-04  AUC=0.9255  F1=0.6982  hamming=0.8233  prec=0.6175  rec=0.8720
+2026-05-24 21:28:37  INFO      training.trainer  Epoch  26/100  train_loss=0.7894  val_loss=0.5808  lr=8.84e-04  AUC=0.9282  F1=0.6993  hamming=0.8256  prec=0.6068  rec=0.8786
+2026-05-24 21:33:29  INFO      training.trainer  Epoch  27/100  train_loss=0.7858  val_loss=0.5760  lr=8.74e-04  AUC=0.9205  F1=0.7179  hamming=0.8502  prec=0.6245  rec=0.8591
+2026-05-24 21:38:27  INFO      training.trainer  Epoch  28/100  train_loss=0.7847  val_loss=0.6052  lr=8.62e-04  AUC=0.9227  F1=0.6819  hamming=0.8045  prec=0.5869  rec=0.8868
+2026-05-24 21:43:28  INFO      training.trainer  Epoch  29/100  train_loss=0.7895  val_loss=0.5652  lr=8.51e-04  AUC=0.9276  F1=0.7108  hamming=0.8402  prec=0.6149  rec=0.8753
+2026-05-24 21:48:30  INFO      training.trainer  Epoch  30/100  train_loss=0.7783  val_loss=0.5831  lr=8.39e-04  AUC=0.9267  F1=0.6986  hamming=0.8212  prec=0.6116  rec=0.8810
+2026-05-24 21:53:29  INFO      training.trainer  Epoch  31/100  train_loss=0.7769  val_loss=0.5791  lr=8.26e-04  AUC=0.9271  F1=0.7013  hamming=0.8324  prec=0.6049  rec=0.8724
+2026-05-24 21:58:27  INFO      training.trainer  Epoch  32/100  train_loss=0.7814  val_loss=0.5713  lr=8.14e-04  AUC=0.9267  F1=0.7142  hamming=0.8414  prec=0.6255  rec=0.8741
+2026-05-24 22:03:25  INFO      training.trainer  Epoch  33/100  train_loss=0.7795  val_loss=0.5650  lr=8.01e-04  AUC=0.9257  F1=0.7121  hamming=0.8443  prec=0.6206  rec=0.8637
+2026-05-24 22:08:39  INFO      training.trainer  Epoch  34/100  train_loss=0.7740  val_loss=0.5558  lr=7.87e-04  AUC=0.9313  F1=0.7194  hamming=0.8477  prec=0.6292  rec=0.8722
+2026-05-24 22:08:40  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9313, F1=0.7194) → checkpoints\cnn_transformer\best_model.pt
+2026-05-24 22:14:36  INFO      training.trainer  Epoch  35/100  train_loss=0.7746  val_loss=0.5619  lr=7.74e-04  AUC=0.9276  F1=0.7169  hamming=0.8455  prec=0.6256  rec=0.8725
+2026-05-24 22:19:57  INFO      training.trainer  Epoch  36/100  train_loss=0.7753  val_loss=0.5674  lr=7.60e-04  AUC=0.9274  F1=0.7164  hamming=0.8454  prec=0.6324  rec=0.8635
+2026-05-24 22:25:14  INFO      training.trainer  Epoch  37/100  train_loss=0.7692  val_loss=0.5632  lr=7.45e-04  AUC=0.9274  F1=0.7211  hamming=0.8500  prec=0.6323  rec=0.8679
+2026-05-24 22:30:49  INFO      training.trainer  Epoch  38/100  train_loss=0.7712  val_loss=0.5671  lr=7.31e-04  AUC=0.9281  F1=0.7208  hamming=0.8483  prec=0.6351  rec=0.8698
+2026-05-24 22:36:06  INFO      training.trainer  Epoch  39/100  train_loss=0.7690  val_loss=0.5731  lr=7.16e-04  AUC=0.9262  F1=0.7184  hamming=0.8496  prec=0.6408  rec=0.8551
+2026-05-24 22:42:08  INFO      training.trainer  Epoch  40/100  train_loss=0.7697  val_loss=0.5808  lr=7.01e-04  AUC=0.9252  F1=0.7056  hamming=0.8329  prec=0.6257  rec=0.8668
+2026-05-24 22:47:51  INFO      training.trainer  Epoch  41/100  train_loss=0.7740  val_loss=0.5654  lr=6.86e-04  AUC=0.9282  F1=0.7150  hamming=0.8457  prec=0.6365  rec=0.8540
+2026-05-24 22:52:55  INFO      training.trainer  Epoch  42/100  train_loss=0.7659  val_loss=0.5623  lr=6.70e-04  AUC=0.9274  F1=0.7209  hamming=0.8490  prec=0.6306  rec=0.8692
+2026-05-24 22:57:55  INFO      training.trainer  Epoch  43/100  train_loss=0.7675  val_loss=0.5645  lr=6.55e-04  AUC=0.9288  F1=0.7179  hamming=0.8454  prec=0.6304  rec=0.8730
+2026-05-24 23:02:57  INFO      training.trainer  Epoch  44/100  train_loss=0.7684  val_loss=0.5644  lr=6.39e-04  AUC=0.9265  F1=0.7219  hamming=0.8500  prec=0.6297  rec=0.8710
+2026-05-24 23:08:04  INFO      training.trainer  Epoch  45/100  train_loss=0.7596  val_loss=0.5545  lr=6.23e-04  AUC=0.9276  F1=0.7268  hamming=0.8545  prec=0.6403  rec=0.8646
+2026-05-24 23:13:12  INFO      training.trainer  Epoch  46/100  train_loss=0.7627  val_loss=0.5682  lr=6.07e-04  AUC=0.9274  F1=0.7221  hamming=0.8530  prec=0.6467  rec=0.8525
+2026-05-24 23:18:29  INFO      training.trainer  Epoch  47/100  train_loss=0.7608  val_loss=0.5684  lr=5.91e-04  AUC=0.9264  F1=0.7186  hamming=0.8501  prec=0.6303  rec=0.8588
+2026-05-24 23:23:57  INFO      training.trainer  Epoch  48/100  train_loss=0.7535  val_loss=0.5708  lr=5.75e-04  AUC=0.9284  F1=0.7152  hamming=0.8432  prec=0.6353  rec=0.8656
+2026-05-24 23:30:01  INFO      training.trainer  Epoch  49/100  train_loss=0.7661  val_loss=0.5618  lr=5.58e-04  AUC=0.9271  F1=0.7193  hamming=0.8482  prec=0.6299  rec=0.8678
+2026-05-24 23:30:01  INFO      training.trainer  Early stopping: no AUC improvement for 15 epochs. Best AUC=0.9313
+2026-05-24 23:30:01  INFO      __main__  
+Training complete. Best val AUC=0.9313  F1=0.7194  at epoch 34

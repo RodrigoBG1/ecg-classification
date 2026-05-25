@@ -8,3 +8,5 @@
 2026-05-24 19:18:00  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
 2026-05-24 19:18:01  INFO      __main__  CNN-Transformer parameters: 3,729,349
 2026-05-24 19:18:05  INFO      __main__  Starting training for 100 epochs …
+2026-05-24 23:30:01  INFO      __main__  
+Training complete. Best val AUC=0.9313  F1=0.7194  at epoch 34
