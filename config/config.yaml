@@ -18,4 +18,13 @@ training:
 
 model:
   n_classes: 5
-  drop_path_rate: 0.3
+  drop_path_rate: 0.3.
+
+cnn_transformer:
+  n_classes:       5
+  d_model:         256
+  n_heads:         8
+  n_layers:        4
+  ffn_dim:         1024
+  dropout:         0.1
+  drop_path_rate:  0.1

@@ -1,0 +1,10 @@
+2026-05-24 19:16:02  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-24 19:16:02  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-24 19:16:03  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-24 19:16:04  INFO      __main__  CNN-Transformer parameters: 3,729,349
+2026-05-24 19:16:29  INFO      __main__  Starting training for 100 epochs …
+2026-05-24 19:17:59  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-24 19:17:59  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-24 19:18:00  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-24 19:18:01  INFO      __main__  CNN-Transformer parameters: 3,729,349
+2026-05-24 19:18:05  INFO      __main__  Starting training for 100 epochs …
