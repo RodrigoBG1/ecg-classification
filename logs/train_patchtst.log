@@ -1,0 +1,5 @@
+2026-05-25 18:27:25  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-25 18:27:25  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-25 18:27:26  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-25 18:27:27  INFO      __main__  PatchTST: patch_size=50  n_patches=100  d_model=256  parameters=4,779,013
+2026-05-25 18:27:48  INFO      __main__  Starting training for 100 epochs  lr=3.0e-04  warmup=10
