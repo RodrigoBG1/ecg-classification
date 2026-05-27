@@ -1,16 +1,3 @@
-"""
-Entry point for PatchTST training on PTB-XL+.
-
-Usage:
-    python scripts/train_patchtst.py `
-        --data_path "ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3" `
-        --norm_stats config/norm_stats.npy `
-        --pos_weight data/processed/pos_weight.npy `
-        --sampling_rate 500
-
-Run scripts/preprocess.py first to generate norm_stats.npy and pos_weight.npy.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -26,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from data.dataset import PTBXLDataset
 from data.preprocessing import default_train_transforms, load_norm_stats
-from models.patchtst import PatchTST
+from models.patchtst_opt import PatchTST
 from training.trainer import Trainer
 from utils.logger import get_logger
 

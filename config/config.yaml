@@ -32,9 +32,9 @@ cnn_transformer:
 
 patchtst:
   n_classes: 5
-  d_model: 256
-  n_heads: 8
-  n_layers: 6
-  ff_dim: 1024
+  d_model: 128
+  n_heads: 4
+  n_layers: 4
+  ff_dim: 256
   attn_dropout: 0.1
   dropout: 0.1
