@@ -23,3 +23,5 @@
 2026-05-26 22:25:09  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
 2026-05-26 22:25:10  INFO      __main__  PatchTST: patch_size=100  n_patches=50  d_model=128  parameters=566,981
 2026-05-26 22:25:12  INFO      __main__  Starting training for 100 epochs  lr=1.0e-04  warmup=15
+2026-05-27 09:51:49  INFO      __main__  
+Training complete. Best val AUC=0.9043  F1=0.6697  at epoch 46

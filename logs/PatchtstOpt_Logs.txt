@@ -1,0 +1,104 @@
+PS C:\Users\caro_\OneDrive\Documents\ecg-classification> python scripts/train_patchtst.py `
+>>     --data_path "ptb-xl-a-large-publicly-available-electrocardiography-dataset-1.0.3" `
+>>     --norm_stats config/norm_stats.npy `
+>>     --pos_weight data/processed/pos_weight.npy `
+>>     --sampling_rate 500 `
+>>     --patch_size 100 `
+>>     --batch_size 8 `
+>>     --lr 1e-4 `
+>>     --warmup 15 `
+>>     --epochs 100
+2026-05-26 22:25:08  INFO      __main__  Loaded normalizer stats from config\norm_stats.npy
+2026-05-26 22:25:08  INFO      __main__  Loaded pos_weight: [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-05-26 22:25:09  INFO      __main__  Train: 17418 samples  Val: 2183 samples  sampling_rate=500 Hz  signal_length=5000
+2026-05-26 22:25:10  INFO      __main__  PatchTST: patch_size=100  n_patches=50  d_model=128  parameters=566,981
+2026-05-26 22:25:12  INFO      __main__  Starting training for 100 epochs  lr=1.0e-04  warmup=15
+2026-05-26 22:25:12  INFO      training.trainer  Training on cuda for up to 100 epochs (patience=15, amp=True, mixup=True, warmup=15 epochs, label_smoothing=0.1)
+2026-05-26 22:38:19  INFO      training.trainer  Epoch   1/100  train_loss=1.1171  val_loss=0.9943  lr=7.60e-06  AUC=0.6814  F1=0.4350  hamming=0.4480  prec=0.3056  rec=0.8728
+2026-05-26 22:38:19  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.6814, F1=0.4350) → checkpoints\patchtst\best_model.pt
+2026-05-26 22:50:43  INFO      training.trainer  Epoch   2/100  train_loss=1.0544  val_loss=0.8527  lr=1.42e-05  AUC=0.8002  F1=0.5320  hamming=0.6838  prec=0.4209  rec=0.7716
+2026-05-26 22:50:43  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8002, F1=0.5320) → checkpoints\patchtst\best_model.pt
+2026-05-26 23:02:01  INFO      training.trainer  Epoch   3/100  train_loss=1.0130  val_loss=0.8247  lr=2.08e-05  AUC=0.8254  F1=0.5709  hamming=0.7367  prec=0.4730  rec=0.7463
+2026-05-26 23:02:01  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8254, F1=0.5709) → checkpoints\patchtst\best_model.pt
+2026-05-26 23:13:07  INFO      training.trainer  Epoch   4/100  train_loss=0.9917  val_loss=0.7980  lr=2.74e-05  AUC=0.8366  F1=0.5934  hamming=0.7698  prec=0.5089  rec=0.7263
+2026-05-26 23:13:07  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8366, F1=0.5934) → checkpoints\patchtst\best_model.pt
+2026-05-26 23:24:05  INFO      training.trainer  Epoch   5/100  train_loss=0.9730  val_loss=0.7922  lr=3.40e-05  AUC=0.8408  F1=0.5820  hamming=0.7592  prec=0.5096  rec=0.7341
+2026-05-26 23:24:05  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8408, F1=0.5820) → checkpoints\patchtst\best_model.pt
+2026-05-26 23:35:03  INFO      training.trainer  Epoch   6/100  train_loss=0.9611  val_loss=0.7995  lr=4.06e-05  AUC=0.8497  F1=0.5748  hamming=0.7573  prec=0.5188  rec=0.7219
+2026-05-26 23:35:03  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8497, F1=0.5748) → checkpoints\patchtst\best_model.pt
+2026-05-26 23:46:15  INFO      training.trainer  Epoch   7/100  train_loss=0.9482  val_loss=0.7682  lr=4.72e-05  AUC=0.8560  F1=0.6239  hamming=0.8060  prec=0.5745  rec=0.6943
+2026-05-26 23:46:15  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8560, F1=0.6239) → checkpoints\patchtst\best_model.pt
+2026-05-26 23:57:24  INFO      training.trainer  Epoch   8/100  train_loss=0.9383  val_loss=0.7253  lr=5.38e-05  AUC=0.8689  F1=0.6038  hamming=0.7420  prec=0.4802  rec=0.8613
+2026-05-26 23:57:24  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8689, F1=0.6038) → checkpoints\patchtst\best_model.pt
+2026-05-27 00:08:34  INFO      training.trainer  Epoch   9/100  train_loss=0.9325  val_loss=0.7324  lr=6.04e-05  AUC=0.8680  F1=0.6152  hamming=0.7634  prec=0.5283  rec=0.8122
+2026-05-27 00:19:34  INFO      training.trainer  Epoch  10/100  train_loss=0.9238  val_loss=0.7139  lr=6.70e-05  AUC=0.8738  F1=0.6290  hamming=0.7756  prec=0.5431  rec=0.8103
+2026-05-27 00:19:34  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8738, F1=0.6290) → checkpoints\patchtst\best_model.pt
+2026-05-27 00:30:35  INFO      training.trainer  Epoch  11/100  train_loss=0.9179  val_loss=0.7260  lr=7.36e-05  AUC=0.8675  F1=0.6393  hamming=0.8105  prec=0.5641  rec=0.7468
+2026-05-27 00:41:38  INFO      training.trainer  Epoch  12/100  train_loss=0.9154  val_loss=0.7170  lr=8.02e-05  AUC=0.8735  F1=0.6368  hamming=0.7928  prec=0.5372  rec=0.7904
+2026-05-27 00:54:05  INFO      training.trainer  Epoch  13/100  train_loss=0.9072  val_loss=0.7002  lr=8.68e-05  AUC=0.8854  F1=0.6269  hamming=0.7586  prec=0.5065  rec=0.8745
+2026-05-27 00:54:05  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8854, F1=0.6269) → checkpoints\patchtst\best_model.pt
+2026-05-27 01:05:22  INFO      training.trainer  Epoch  14/100  train_loss=0.9043  val_loss=0.6935  lr=9.34e-05  AUC=0.8818  F1=0.6166  hamming=0.7524  prec=0.5001  rec=0.8645
+C:\Users\caro_\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\lr_scheduler.py:240: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+2026-05-27 01:16:25  INFO      training.trainer  Epoch  15/100  train_loss=0.9016  val_loss=0.7108  lr=1.00e-04  AUC=0.8830  F1=0.6437  hamming=0.8056  prec=0.5842  rec=0.7692
+2026-05-27 01:27:22  INFO      training.trainer  Epoch  16/100  train_loss=0.8951  val_loss=0.6848  lr=1.00e-04  AUC=0.8859  F1=0.6441  hamming=0.7975  prec=0.5629  rec=0.7971
+2026-05-27 01:27:22  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8859, F1=0.6441) → checkpoints\patchtst\best_model.pt
+2026-05-27 01:38:19  INFO      training.trainer  Epoch  17/100  train_loss=0.8884  val_loss=0.6595  lr=9.99e-05  AUC=0.8869  F1=0.6500  hamming=0.7940  prec=0.5463  rec=0.8404
+2026-05-27 01:38:19  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8869, F1=0.6500) → checkpoints\patchtst\best_model.pt
+2026-05-27 01:49:32  INFO      training.trainer  Epoch  18/100  train_loss=0.8870  val_loss=0.6791  lr=9.97e-05  AUC=0.8849  F1=0.6483  hamming=0.7971  prec=0.5493  rec=0.8202
+2026-05-27 02:00:45  INFO      training.trainer  Epoch  19/100  train_loss=0.8832  val_loss=0.6600  lr=9.95e-05  AUC=0.8901  F1=0.6552  hamming=0.8024  prec=0.5505  rec=0.8315
+2026-05-27 02:00:45  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8901, F1=0.6552) → checkpoints\patchtst\best_model.pt
+2026-05-27 02:12:04  INFO      training.trainer  Epoch  20/100  train_loss=0.8797  val_loss=0.6938  lr=9.92e-05  AUC=0.8907  F1=0.6231  hamming=0.7401  prec=0.5205  rec=0.8710
+2026-05-27 02:12:04  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8907, F1=0.6231) → checkpoints\patchtst\best_model.pt
+2026-05-27 02:23:07  INFO      training.trainer  Epoch  21/100  train_loss=0.8786  val_loss=0.6665  lr=9.88e-05  AUC=0.8906  F1=0.6528  hamming=0.7972  prec=0.5410  rec=0.8464
+2026-05-27 02:34:05  INFO      training.trainer  Epoch  22/100  train_loss=0.8741  val_loss=0.6710  lr=9.84e-05  AUC=0.8926  F1=0.6623  hamming=0.8143  prec=0.5790  rec=0.8024
+2026-05-27 02:34:05  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8926, F1=0.6623) → checkpoints\patchtst\best_model.pt
+2026-05-27 02:45:35  INFO      training.trainer  Epoch  23/100  train_loss=0.8732  val_loss=0.6689  lr=9.79e-05  AUC=0.8906  F1=0.6419  hamming=0.7797  prec=0.5412  rec=0.8489
+2026-05-27 02:56:56  INFO      training.trainer  Epoch  24/100  train_loss=0.8722  val_loss=0.6675  lr=9.73e-05  AUC=0.8929  F1=0.6476  hamming=0.7873  prec=0.5655  rec=0.8291
+2026-05-27 02:56:56  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8929, F1=0.6476) → checkpoints\patchtst\best_model.pt
+2026-05-27 03:08:11  INFO      training.trainer  Epoch  25/100  train_loss=0.8692  val_loss=0.6717  lr=9.67e-05  AUC=0.8893  F1=0.6520  hamming=0.8008  prec=0.5696  rec=0.8143
+2026-05-27 03:19:14  INFO      training.trainer  Epoch  26/100  train_loss=0.8673  val_loss=0.6455  lr=9.60e-05  AUC=0.8963  F1=0.6577  hamming=0.7989  prec=0.5435  rec=0.8603
+2026-05-27 03:19:14  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8963, F1=0.6577) → checkpoints\patchtst\best_model.pt
+2026-05-27 03:30:14  INFO      training.trainer  Epoch  27/100  train_loss=0.8640  val_loss=0.6718  lr=9.52e-05  AUC=0.8977  F1=0.6581  hamming=0.8117  prec=0.5887  rec=0.7968
+2026-05-27 03:30:14  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.8977, F1=0.6581) → checkpoints\patchtst\best_model.pt
+2026-05-27 03:41:32  INFO      training.trainer  Epoch  28/100  train_loss=0.8629  val_loss=0.6871  lr=9.44e-05  AUC=0.8873  F1=0.6549  hamming=0.8106  prec=0.5751  rec=0.7902
+2026-05-27 03:53:07  INFO      training.trainer  Epoch  29/100  train_loss=0.8609  val_loss=0.6527  lr=9.35e-05  AUC=0.8919  F1=0.6649  hamming=0.8193  prec=0.5967  rec=0.7903
+2026-05-27 04:04:26  INFO      training.trainer  Epoch  30/100  train_loss=0.8597  val_loss=0.6408  lr=9.26e-05  AUC=0.9025  F1=0.6508  hamming=0.7844  prec=0.5333  rec=0.8800
+2026-05-27 04:04:26  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9025, F1=0.6508) → checkpoints\patchtst\best_model.pt
+2026-05-27 04:15:31  INFO      training.trainer  Epoch  31/100  train_loss=0.8571  val_loss=0.6354  lr=9.16e-05  AUC=0.9032  F1=0.6788  hamming=0.8178  prec=0.5793  rec=0.8478
+2026-05-27 04:15:31  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9032, F1=0.6788) → checkpoints\patchtst\best_model.pt
+2026-05-27 04:26:32  INFO      training.trainer  Epoch  32/100  train_loss=0.8584  val_loss=0.6531  lr=9.05e-05  AUC=0.8976  F1=0.6593  hamming=0.7985  prec=0.5534  rec=0.8561
+2026-05-27 04:37:34  INFO      training.trainer  Epoch  33/100  train_loss=0.8526  val_loss=0.6596  lr=8.94e-05  AUC=0.8981  F1=0.6492  hamming=0.7880  prec=0.5439  rec=0.8528
+2026-05-27 04:49:12  INFO      training.trainer  Epoch  34/100  train_loss=0.8527  val_loss=0.6503  lr=8.83e-05  AUC=0.8958  F1=0.6622  hamming=0.8071  prec=0.5717  rec=0.8293
+2026-05-27 05:01:07  INFO      training.trainer  Epoch  35/100  train_loss=0.8542  val_loss=0.6582  lr=8.71e-05  AUC=0.8918  F1=0.6578  hamming=0.8083  prec=0.5589  rec=0.8173
+2026-05-27 05:13:01  INFO      training.trainer  Epoch  36/100  train_loss=0.8509  val_loss=0.6514  lr=8.58e-05  AUC=0.8936  F1=0.6572  hamming=0.7972  prec=0.5478  rec=0.8564
+2026-05-27 05:24:18  INFO      training.trainer  Epoch  37/100  train_loss=0.8516  val_loss=0.6584  lr=8.45e-05  AUC=0.8920  F1=0.6533  hamming=0.7968  prec=0.5454  rec=0.8461
+2026-05-27 05:35:23  INFO      training.trainer  Epoch  38/100  train_loss=0.8484  val_loss=0.6492  lr=8.32e-05  AUC=0.9004  F1=0.6568  hamming=0.7863  prec=0.5491  rec=0.8768
+2026-05-27 05:47:02  INFO      training.trainer  Epoch  39/100  train_loss=0.8479  val_loss=0.6357  lr=8.18e-05  AUC=0.9003  F1=0.6706  hamming=0.8115  prec=0.5702  rec=0.8464
+2026-05-27 05:58:20  INFO      training.trainer  Epoch  40/100  train_loss=0.8491  val_loss=0.6502  lr=8.03e-05  AUC=0.9006  F1=0.6772  hamming=0.8228  prec=0.5887  rec=0.8155
+2026-05-27 06:09:25  INFO      training.trainer  Epoch  41/100  train_loss=0.8464  val_loss=0.6521  lr=7.89e-05  AUC=0.8940  F1=0.6713  hamming=0.8214  prec=0.5893  rec=0.8053
+2026-05-27 06:20:25  INFO      training.trainer  Epoch  42/100  train_loss=0.8443  val_loss=0.6532  lr=7.73e-05  AUC=0.8922  F1=0.6583  hamming=0.8040  prec=0.5550  rec=0.8360
+2026-05-27 06:31:23  INFO      training.trainer  Epoch  43/100  train_loss=0.8424  val_loss=0.6456  lr=7.58e-05  AUC=0.8928  F1=0.6620  hamming=0.8073  prec=0.5693  rec=0.8264
+2026-05-27 06:42:42  INFO      training.trainer  Epoch  44/100  train_loss=0.8437  val_loss=0.6552  lr=7.42e-05  AUC=0.8938  F1=0.6554  hamming=0.7938  prec=0.5502  rec=0.8532
+2026-05-27 06:53:55  INFO      training.trainer  Epoch  45/100  train_loss=0.8395  val_loss=0.6416  lr=7.26e-05  AUC=0.9025  F1=0.6547  hamming=0.7909  prec=0.5396  rec=0.8715
+2026-05-27 07:04:58  INFO      training.trainer  Epoch  46/100  train_loss=0.8381  val_loss=0.6366  lr=7.09e-05  AUC=0.9043  F1=0.6697  hamming=0.8053  prec=0.5672  rec=0.8636
+2026-05-27 07:04:58  INFO      training.trainer    ✓ Saved best checkpoint (AUC=0.9043, F1=0.6697) → checkpoints\patchtst\best_model.pt
+2026-05-27 07:15:57  INFO      training.trainer  Epoch  47/100  train_loss=0.8396  val_loss=0.6367  lr=6.92e-05  AUC=0.9004  F1=0.6656  hamming=0.8038  prec=0.5654  rec=0.8526
+2026-05-27 07:26:53  INFO      training.trainer  Epoch  48/100  train_loss=0.8380  val_loss=0.6588  lr=6.75e-05  AUC=0.8915  F1=0.6544  hamming=0.7967  prec=0.5532  rec=0.8411
+2026-05-27 07:37:47  INFO      training.trainer  Epoch  49/100  train_loss=0.8375  val_loss=0.6381  lr=6.58e-05  AUC=0.8999  F1=0.6640  hamming=0.8031  prec=0.5623  rec=0.8535
+2026-05-27 07:48:53  INFO      training.trainer  Epoch  50/100  train_loss=0.8360  val_loss=0.6411  lr=6.40e-05  AUC=0.8972  F1=0.6684  hamming=0.8094  prec=0.5652  rec=0.8467
+2026-05-27 07:59:57  INFO      training.trainer  Epoch  51/100  train_loss=0.8325  val_loss=0.6396  lr=6.23e-05  AUC=0.8982  F1=0.6537  hamming=0.7876  prec=0.5409  rec=0.8730
+2026-05-27 08:10:56  INFO      training.trainer  Epoch  52/100  train_loss=0.8325  val_loss=0.6645  lr=6.05e-05  AUC=0.8923  F1=0.6523  hamming=0.7912  prec=0.5637  rec=0.8340
+2026-05-27 08:21:52  INFO      training.trainer  Epoch  53/100  train_loss=0.8311  val_loss=0.6448  lr=5.87e-05  AUC=0.8984  F1=0.6624  hamming=0.7996  prec=0.5597  rec=0.8565
+2026-05-27 08:32:47  INFO      training.trainer  Epoch  54/100  train_loss=0.8309  val_loss=0.7013  lr=5.69e-05  AUC=0.8870  F1=0.6233  hamming=0.7529  prec=0.5206  rec=0.8621
+2026-05-27 08:44:38  INFO      training.trainer  Epoch  55/100  train_loss=0.8309  val_loss=0.6383  lr=5.51e-05  AUC=0.8982  F1=0.6622  hamming=0.7995  prec=0.5567  rec=0.8586
+2026-05-27 08:56:00  INFO      training.trainer  Epoch  56/100  train_loss=0.8257  val_loss=0.6540  lr=5.32e-05  AUC=0.8959  F1=0.6566  hamming=0.7948  prec=0.5640  rec=0.8458
+2026-05-27 09:07:02  INFO      training.trainer  Epoch  57/100  train_loss=0.8279  val_loss=0.6302  lr=5.14e-05  AUC=0.9032  F1=0.6717  hamming=0.8074  prec=0.5743  rec=0.8578
+2026-05-27 09:17:59  INFO      training.trainer  Epoch  58/100  train_loss=0.8283  val_loss=0.6539  lr=4.96e-05  AUC=0.8894  F1=0.6559  hamming=0.7983  prec=0.5545  rec=0.8394
+2026-05-27 09:28:53  INFO      training.trainer  Epoch  59/100  train_loss=0.8254  val_loss=0.6722  lr=4.78e-05  AUC=0.8957  F1=0.6394  hamming=0.7651  prec=0.5262  rec=0.8812
+2026-05-27 09:39:51  INFO      training.trainer  Epoch  60/100  train_loss=0.8229  val_loss=0.6590  lr=4.59e-05  AUC=0.8932  F1=0.6559  hamming=0.7942  prec=0.5637  rec=0.8413
+2026-05-27 09:51:49  INFO      training.trainer  Epoch  61/100  train_loss=0.8201  val_loss=0.6385  lr=4.41e-05  AUC=0.8965  F1=0.6651  hamming=0.8045  prec=0.5597  rec=0.8542
+2026-05-27 09:51:49  INFO      training.trainer  Early stopping: no AUC improvement for 15 epochs. Best AUC=0.9043
+2026-05-27 09:51:49  INFO      __main__
+Training complete. Best val AUC=0.9043  F1=0.6697  at epoch 46
+PS C:\Users\caro_\OneDrive\Documents\ecg-classification>
