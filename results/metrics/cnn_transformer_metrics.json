@@ -9,7 +9,7 @@
   "specificity": 0.8874191149920856,
   "n_params": 3729349,
   "n_trainable": 3729349,
-  "inference_time_ms": 0.3655998234194939,
+  "inference_time_ms": 0.4274962421017464,
   "training_time_minutes": 48.3338744521141,
   "auc_per_class": [
     0.947858202900013,

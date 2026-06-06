@@ -1,0 +1,14 @@
+\begin{table}
+\caption{Model comparison on PTB-XL+ test set.}
+\label{tab:comparison}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+ & Macro-AUC & Macro-F1 & AUPRC & Accuracy & Sensitivity & Specificity & Params(M) & Inference(ms) \\
+Model &  &  &  &  &  &  &  &  \\
+\midrule
+resnet1d & 0.925800 & 0.740900 & 0.814100 & 0.764300 & 0.779800 & 0.898800 & 8.914100 & 0.234700 \\
+patchtst & 0.910000 & 0.709900 & 0.772800 & 0.740200 & 0.745800 & 0.893900 & 0.819600 & 0.705100 \\
+cnn_transformer & 0.926400 & 0.738200 & 0.808100 & 0.760200 & 0.795900 & 0.887400 & 3.729300 & 0.427500 \\
+\bottomrule
+\end{tabular}
+\end{table}
