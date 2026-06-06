@@ -18,3 +18,21 @@
 2026-05-11 15:11:55  INFO      __main__  pos_weight (for BCEWithLogitsLoss): [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
 2026-05-11 15:11:55  INFO      __main__  Saved pos_weight to data\processed\pos_weight.npy
 2026-05-11 15:11:55  INFO      __main__  Preprocessing complete.
+2026-06-05 11:58:26  INFO      __main__  Loading split metadata (sampling_rate=500) …
+2026-06-05 11:58:26  INFO      __main__  Split sizes — train: 17418, val: 2183, test: 2198
+2026-06-05 11:58:26  INFO      __main__  Fitting per-lead z-score normalizer (streaming, constant memory) …
+2026-06-05 11:59:06  INFO      __main__  Per-lead mean range: [-0.0017, 0.0016]
+2026-06-05 11:59:06  INFO      __main__  Per-lead std  range: [0.1422,  0.3377]
+2026-06-05 11:59:06  INFO      __main__  Computing class distribution …
+2026-06-05 11:59:07  INFO      __main__  pos_weight (for BCEWithLogitsLoss): [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-06-05 11:59:07  INFO      __main__  Saved pos_weight to data\processed\pos_weight.npy
+2026-06-05 11:59:07  INFO      __main__  Preprocessing complete.
+2026-06-05 12:33:45  INFO      __main__  Loading split metadata (sampling_rate=500) …
+2026-06-05 12:33:46  INFO      __main__  Split sizes — train: 17418, val: 2183, test: 2198
+2026-06-05 12:33:46  INFO      __main__  Fitting per-lead z-score normalizer (streaming, constant memory) …
+2026-06-05 12:34:20  INFO      __main__  Per-lead mean range: [-0.0017, 0.0016]
+2026-06-05 12:34:20  INFO      __main__  Per-lead std  range: [0.1422,  0.3377]
+2026-06-05 12:34:20  INFO      __main__  Computing class distribution …
+2026-06-05 12:34:20  INFO      __main__  pos_weight (for BCEWithLogitsLoss): [1.2930489778518677, 2.9776203632354736, 3.261805772781372, 3.4581520557403564, 7.21991491317749]
+2026-06-05 12:34:20  INFO      __main__  Saved pos_weight to data\processed\pos_weight.npy
+2026-06-05 12:34:20  INFO      __main__  Preprocessing complete.
